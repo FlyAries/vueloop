@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="./lib/vue-2.4.0.js"></script>
+<script src="./lib/vue-router.js"></script>
+<link rel="stylesheet" type="text/css" href="./lib/bootstrap-3.3.7.css">
+<link rel="stylesheet" href="./lib/index.css">
+</head>
+<body>
+    <div id="app">
+        <div class="ban">
+            <banner></banner>
+            <div class="nav_">
+                <div class="nav">
+                    <router-link to="/" class="activ active">
+                        <image src="images/logo.png"></image>
+                    </router-link>
+                    <router-link to="/maixun" class="activ maixun">
+                        <p>麦讯</p>
+                        <span>24h</span>
+                    </router-link>
+                    <router-link to="/solute" class="activ">
+                        <p @mouseenter="solute(1)" @mouseleave="solutee()">解决方案</p>
+                        <ul class="s_list" v-show="a===1">
+                            <li>
+                                <router-link to="">111</router-link>
+                            </li>
+                            <li>
+                                <router-link to="">222</router-link>
+                            </li>
+                            <li>
+                                <router-link to="">333</router-link>
+                            </li>
+                        </ul>
+                    </router-link>
+                    <router-link to="/pro" class="activ">
+                        <p @mouseenter="solute(2)" @mouseleave="solutee()">产品服务</p>
+                        <ul class="s_list" v-show="a===2">
+                            <li>
+                                <router-link to="">aaa</router-link>
+                            </li>
+                            <li>
+                                <router-link to="">bbb</router-link>
+                            </li>
+                            <li>
+                                <router-link to="">ccfffc</router-link>
+                            </li>
+                            <li>
+                                <router-link to="">ddd</router-link>
+                            </li>
+                            <li>
+                                <router-link to="">eee</router-link>
+                            </li>
+                        </ul>
+                    </router-link>
+                    <router-link to="" class="activ"> <p>会员服务</p> </router-link>
+                </div>
+            </div>
+        </div>        
+        <router-view></router-view>
+    </div>
+
+
+    <template id="tmp">
+        <div id="loop">
+            <ul class="banner">
+                <li v-show="index===x" v-for="(item,index) in imgurl" :key="item.id">
+                    <img :src="item.url">
+                </li>
+            </ul>
+            <ul class="cir">
+                <li class="circle" @click="change(index)" :class="{active : index===x}" v-for="(item,index) in imgurl"></li>
+            </ul>
+            <div @click="pre" class="pre"> < </div>
+            <div @click="next" class="next"> > </div>
+        </div>
+    </template>
+</body>
+<script>   
+
+const maixun = {
+        template:"<div>这是麦讯24h链接</div>"
+    }
+    const solute = {
+        template:"<div>这是解决问题链接</div>"
+    }
+    const pro = {
+        template:"<div>这是产品中心链接</div>"
+    }
+    const router = new VueRouter({
+        routes:[
+            {path:"/maixun",component:maixun},
+            {path:"/solute",component:solute},
+            {path:"/pro",component:pro}
+        ]
+        // linkActiveClass:"mayclass"
+    })
+
+
+    var comp = {
+        template:"#tmp",
+        data(){
+            return {
+                x:0,
+                imgurl:[
+                   {url:"./images/a.jpg"},
+                   {url:"./images/b.jpg"},
+                   {url:"./images/c.jpg"}
+                ]
+            }
+        },
+        methods: {
+            pre(){
+                this.x --
+                console.log(this.x)
+                if(this.x < 0){
+                    this.x = this.imgurl.length-1
+                }
+            },
+            next(){
+                this.x ++
+                if(this.x === this.imgurl.length){
+                    this.x = 0
+                }
+            },
+            change(index){
+                this.x = index
+            }
+        },
+    }
+    Vue.component("banner",comp)
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            a:0
+        },
+        methods:{
+            solute(b){                  
+                this.a = b;
+
+            },
+            solutee(){
+                this.a = 0
+            }
+        },
+        router,    
+    })
+
+</script>
+</html>

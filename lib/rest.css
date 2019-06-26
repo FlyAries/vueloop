@@ -1,0 +1,7 @@
+body,dd,dl,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,ol,p,select,td,textarea,th,ul{margin:0;padding:0}body{font:12px"寰蒋闆呴粦","瀹嬩綋","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%}a{color:#2d374b;text-decoration:none}em{font-style:normal}li{list-style:none}img{border:0;vertical-align:middle}table{border-collapse:collapse;border-spacing:0}p{word-wrap:break-word}h1,h2,h3,h4,h5,h6{font-size:14px;font-weight:unset}@font-face{font-family:Medium;src:url(/static/font/NotoSansHans-Medium.otf)}@font-face{font-family:MediumLight;src:url(/static/font/NotoSansHans-Light.otf)}@font-face{font-family:MediumBlack;src:url(/static/font/NotoSansHans-Black.otf)}
+li{
+    list-style: none;
+}
+a,p{
+    text-decoration: none;
+}
